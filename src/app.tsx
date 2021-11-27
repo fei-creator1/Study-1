@@ -5,6 +5,7 @@ import axios from 'axios'
 import { useRequest } from 'ahooks'
 import { Menu } from 'antd'
 import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons'
+import A from './a'
 
 const { SubMenu } = Menu
 interface Item {
@@ -31,6 +32,7 @@ const App: React.FC<Item> = item => {
     <Spin />
   ) : (
     <>
+      <A />
       <div>{data?.data?.substr(0, 1000)}</div>
       <Button
         onClick={() => {
