@@ -1,0 +1,7 @@
+.title {
+  text-align-last: justify;
+  font-weight: bold;
+}
+/*.title::after {
+  content: '：';
+}*/

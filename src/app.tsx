@@ -1,17 +1,22 @@
 import React, { useEffect } from 'react'
-import 'antd/dist/antd.css'
 import axios from 'axios'
 import { useRequest } from 'ahooks'
-
-import { Layout, Menu, Breadcrumb, Space, Tabs, Input } from 'antd'
-import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons'
-import { UploadOutlined, VideoCameraOutlined } from '@ant-design/icons'
+import { Layout, Menu, Space, Tabs, Input, Avatar, Card, PageHeader, Row, Col, Tag } from 'antd'
+import {
+  UserOutlined,
+  LaptopOutlined,
+  NotificationOutlined,
+  ApiOutlined,
+  ProfileOutlined,
+  EditOutlined,
+} from '@ant-design/icons'
+import css from './app.css'
 
 const { Header, Content, Footer, Sider } = Layout
 
 const App: React.FC<any> = () => {
   return (
-    <Layout style={{ height: '100vh' }}>
+    <Layout style={{ minHeight: '100vh' }}>
       <Sider
         theme="light"
         breakpoint="lg"
@@ -25,14 +30,24 @@ const App: React.FC<any> = () => {
         style={{ zIndex: '100', boxShadow: '0 0 20px 1px rgba(50,50,50,0.1)' }}
       >
         <Space
-          style={{ margin: '10px', color: 'rgba(50,50,50,0.8)', fontSize: '18px', cursor: 'pointer' }}
+          style={{
+            margin: '10px',
+            color: 'rgba(50,50,50,0.8)',
+            fontSize: '18px',
+            cursor: 'pointer',
+            width: '100%',
+            whiteSpace: 'nowrap',
+            textOverflow: 'ellipsis',
+            overflow: 'hidden',
+            wordBreak: 'break-all',
+          }}
           size="small"
         >
           <img width="40" src="../public/nfca.png" />
           NFCA接口管理
         </Space>
 
-        <Menu theme="light" mode="inline" defaultSelectedKeys={['4']}>
+        <Menu theme="light" mode="inline" defaultSelectedKeys={['1']}>
           <Menu.SubMenu key="sub1" icon={<UserOutlined />} title="login">
             <Menu.Item key="1">option1</Menu.Item>
             <Menu.Item key="2">option2</Menu.Item>
@@ -85,7 +100,7 @@ const App: React.FC<any> = () => {
             <Tabs.TabPane
               tab={
                 <>
-                  <LaptopOutlined />
+                  <ProfileOutlined />
                   文档
                 </>
               }
@@ -94,7 +109,7 @@ const App: React.FC<any> = () => {
             <Tabs.TabPane
               tab={
                 <>
-                  <LaptopOutlined />
+                  <EditOutlined />
                   编辑
                 </>
               }
@@ -103,30 +118,51 @@ const App: React.FC<any> = () => {
             <Tabs.TabPane
               tab={
                 <>
-                  <LaptopOutlined />
+                  <ApiOutlined />
                   调用
                 </>
               }
               key="3"
             />
           </Tabs>
-          <div>
+          <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
             <Input.Search
               placeholder="input search text"
               onSearch={onSearch => {
                 console.log(onSearch)
               }}
-              style={{ width: '250px', margin: '11px' }}
+              style={{ maxWidth: '250px' }}
               enterButton
             />
+            <Avatar style={{ margin: '0 20px' }} icon={<UserOutlined />} />
           </div>
         </Header>
         <Content style={{ margin: '24px 16px 0' }}>
-          <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
-            content
-          </div>
+          <PageHeader className="site-page-header" title="获取登录信息" subTitle="获取用户详细信息" />
+          <Card>
+            <Row gutter={[16, 16]}>
+              <Col className={css.title} span={2}>
+                路径
+              </Col>
+              <Col span={10}>
+                <Tag color="green">POST</Tag>login/getInfo
+              </Col>
+              <Col className={css.title} span={2}>
+                状态
+              </Col>
+              <Col span={10}>已完成</Col>
+              <Col className={css.title} span={2}>
+                Card content
+              </Col>
+              <Col span={10}>Card content</Col>
+              <Col className={css.title} span={2}>
+                Card content
+              </Col>
+              <Col span={10}>Card content</Col>
+            </Row>
+          </Card>
         </Content>
-        <Footer style={{ color: 'rgba(50,50,50,0.8)', textAlign: 'center' }}>
+        <Footer style={{ color: 'rgba(50,50,50,0.8)', textAlign: 'center', fontSize: '13px' }}>
           Copyright © {new Date().getFullYear()} 电气学院NFCA团队 版权所有
         </Footer>
       </Layout>
